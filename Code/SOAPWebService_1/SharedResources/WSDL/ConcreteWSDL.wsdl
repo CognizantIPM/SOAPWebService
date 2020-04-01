@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://xmlns.example.com/1566241308122" xmlns:ns0="http://www.tibco.com/schemas/SOAPWebService/SharedResources/Schemas/ReqRes.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="Untitled" targetNamespace="http://xmlns.example.com/1566241308122">
+    <wsdl:types>
+        <xs:schema xmlns="http://www.tibco.com/schemas/SOAPWebService/SharedResources/Schemas/ReqRes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tibco.com/schemas/SOAPWebService/SharedResources/Schemas/ReqRes.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
+            <xs:element name="Req">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="FName" type="xs:string" minOccurs="0"/>
+                        <xs:element name="LName" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Res" type="xs:string"/>
+            <xs:element name="root">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns0:Req" minOccurs="0"/>
+                        <xs:element ref="ns0:Res" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3.org/XML/1998/namespace" elementFormDefault="unqualified" attributeFormDefault="qualified">
+            <attribute name="base" type="anyURI"/>
+            <attribute name="id" type="ID"/>
+            <attribute name="lang">
+                <simpleType>
+                    <union memberTypes="language">
+                        <simpleType>
+                            <restriction base="string">
+                                <length value="0"/>
+                            </restriction>
+                        </simpleType>
+                    </union>
+                </simpleType>
+            </attribute>
+            <attribute name="space" default="preserve">
+                <simpleType>
+                    <restriction base="NCName">
+                        <enumeration value="default"/>
+                        <enumeration value="preserve"/>
+                    </restriction>
+                </simpleType>
+            </attribute>
+            <attributeGroup name="specialAttrs">
+                <attribute ref="xml:base"/>
+                <attribute ref="xml:id"/>
+                <attribute ref="xml:lang"/>
+                <attribute ref="xml:space" default="preserve"/>
+            </attributeGroup>
+        </schema>
+    </wsdl:types>
+    <wsdl:service name="Service">
+        <wsdl:port name="PortTypeEndpoint1" binding="tns:PortTypeEndpoint1Binding">
+            <soap:address location="http://localhost:8987/SharedResources/Services/Service.serviceagent/PortTypeEndpoint1"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="PortType">
+        <wsdl:operation name="Operation">
+            <wsdl:input message="tns:InMessage"/>
+            <wsdl:output message="tns:OutMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PortTypeEndpoint1Binding" type="tns:PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Operation">
+            <soap:operation style="document" soapAction="/SharedResources/Services/Service.serviceagent/PortTypeEndpoint1/Operation"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="part1"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="part1"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="InMessage">
+        <wsdl:part name="part1" element="ns0:Req"/>
+    </wsdl:message>
+    <wsdl:message name="OutMessage">
+        <wsdl:part name="part1" element="ns0:Res"/>
+    </wsdl:message>
+</wsdl:definitions>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://xmlns.example.com/1566241143702" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:ns="http://www.tibco.com/schemas/SOAPWebService/SharedResources/Schemas/ReqRes.xsd">
+    <wsdl:import namespace="http://xmlns.example.com/1566241143702" location="/SharedResources/WSDL/WSDL.wsdl"/>
+    <pd:name>BusinessProcess/SubProcess/ConcatValues.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType wsMsgRef="pfx:InMessage"/>
+    <pd:startX>150</pd:startX>
+    <pd:startY>64</pd:startY>
+    <pd:returnBindings>
+        <pfx:OutMessage>
+            <part1>
+                <ns:Res>
+                    <xsl:value-of select="concat($Start/pfx:InMessage/part1/ns:Req/ns:FName,&quot;,&quot;,$Start/pfx:InMessage/part1/ns:Req/ns:LName)"/>
+                </ns:Res>
+            </part1>
+        </pfx:OutMessage>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType wsMsgRef="pfx:OutMessage"/>
+    <pd:endX>450</pd:endX>
+    <pd:endY>64</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://xmlns.example.com/1566241381043</pd:targetNamespace>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>
